@@ -13,8 +13,7 @@ void main() {
   Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.black,
   ));
@@ -25,7 +24,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Example extends StatefulWidget {
-  const Example({Key key}) : super(key: key);
+  const Example({Key? key}) : super(key: key);
 
   @override
   State<Example> createState() => _ExampleState();
@@ -82,10 +81,7 @@ class _ExampleState extends State<Example> {
                               const SizedBox(height: 50),
                               const Text(
                                 'No images selected',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white70),
+                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white70),
                               )
                             ],
                           ),
@@ -102,7 +98,7 @@ class _ExampleState extends State<Example> {
                                     enablePanAlways: true,
                                     maxScale: 2.0,
                                     minScale: 1.0,
-                                    child: Image.file(File(data.path)),
+                                    child: Image.file(File(data.path!)),
                                   ),
                                 );
                               }
@@ -113,8 +109,7 @@ class _ExampleState extends State<Example> {
                                   return AspectRatio(
                                     aspectRatio: 16.0 / 9.0,
                                     child: BetterVideoPlayer(
-                                      configuration:
-                                          const BetterVideoPlayerConfiguration(
+                                      configuration: const BetterVideoPlayerConfiguration(
                                         looping: true,
                                         autoPlay: true,
                                         allowedScreenSleep: false,
@@ -123,7 +118,7 @@ class _ExampleState extends State<Example> {
                                       controller: BetterVideoPlayerController(),
                                       dataSource: BetterVideoPlayerDataSource(
                                         BetterVideoPlayerDataSourceType.file,
-                                        data.path,
+                                        data.path!,
                                       ),
                                     ),
                                   );
@@ -145,7 +140,7 @@ class _ExampleState extends State<Example> {
                     onlyImages: true,
                     thumbnailBoxFix: BoxFit.cover,
                     singlePick: _singlePick,
-                    gridViewBackgroundColor: Colors.grey[900],
+                    gridViewBackgroundColor: Colors.grey[900]!,
                     imageBackgroundColor: Colors.black,
                     maxPickImages: 5,
                     appBarHeight: 60,
@@ -182,29 +177,21 @@ class _ExampleState extends State<Example> {
                                         });
                                       },
                                       child: AnimatedContainer(
-                                        duration:
-                                            const Duration(milliseconds: 300),
+                                        duration: const Duration(milliseconds: 300),
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          border: Border.all(
-                                              color: Colors.blue, width: 1.5),
+                                          borderRadius: BorderRadius.circular(6),
+                                          border: Border.all(color: Colors.blue, width: 1.5),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               const Text(
                                                 'Select multiple',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 10),
+                                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 10),
                                               ),
                                               const SizedBox(
                                                 width: 7,
@@ -212,11 +199,7 @@ class _ExampleState extends State<Example> {
                                               Transform.scale(
                                                 scale: 1.5,
                                                 child: Icon(
-                                                  _singlePick
-                                                      ? Icons
-                                                          .check_box_outline_blank
-                                                      : Icons
-                                                          .check_box_outlined,
+                                                  _singlePick ? Icons.check_box_outline_blank : Icons.check_box_outlined,
                                                   color: Colors.blue,
                                                   size: 10,
                                                 ),
@@ -238,7 +221,7 @@ class _ExampleState extends State<Example> {
                                 List<String> mediaPath = [];
                                 media.pickedFile.map((p) {
                                   setState(() {
-                                    mediaPath.add(p.path);
+                                    mediaPath.add(p.path!);
                                   });
                                 }).toString();
                                 if (mediaPath.isNotEmpty) {
@@ -252,8 +235,7 @@ class _ExampleState extends State<Example> {
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: Colors.blue, width: 1.5),
+                                  border: Border.all(color: Colors.blue, width: 1.5),
                                 ),
                                 child: Transform.scale(
                                   scale: 2,
